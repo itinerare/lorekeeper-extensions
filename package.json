@@ -1,0 +1,9 @@
+{
+    "private": true,
+    "scripts": {
+        "format": "./node_modules/.bin/blade-formatter --progress --write '**/*.blade.php'"
+    },
+    "devDependencies": {
+        "blade-formatter": "^1.29.7"
+    }
+}
