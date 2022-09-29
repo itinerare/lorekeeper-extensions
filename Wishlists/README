@@ -1,1 +1,8 @@
-You can put information about your extension here!
+Allows users to create item wishlists, including both a default (always present) wishlist as well as theoretically infinite custom, named wishlists. Items can be added to a wishlist via a button and dropdown present on:
+
+- Item list in world
+- Shop stock modals
+- Inventory stack modals (both user and character)
+- Publicly viewed wishlists
+
+...and can be edited via the wishlists panel in /home. An item can exist in multiple different wishlists, and count desired can be tracked independently per wishlist as well. Wishlist items can also be moved between wishlists, which moves and/or adds their existing count to the destination wishlist. A user's wishlists can be viewed publicly via their profile. Note that wishlists are not updated automatically, and must be user-managed.
