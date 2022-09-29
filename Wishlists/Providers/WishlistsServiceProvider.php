@@ -3,6 +3,7 @@
 namespace Extensions\Wishlists\Providers;
 
 use Esemve\Hook\Facades\Hook;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 
 class WishlistsServiceProvider extends ServiceProvider {
@@ -77,56 +78,73 @@ class WishlistsServiceProvider extends ServiceProvider {
      * Make various changes via hooks.
      */
     public function handleHooks() {
+        if(DB::table('site_extensions')->where('key', $this->moduleNameLower)->exists()) {
+            // Multiple listeners can impact the same hook, but only so long as
+            // they have different priorities set. Since broadly extensions should
+            // strive to be mutually compatible where feasible regardless, the index
+            // of the extension in the on-site table is used here so as to provide
+            // a unique number.
+            $priority = DB::table('site_extensions')->get()->search(function ($extension) {
+                return $extension->key == $this->moduleNameLower;
+            });
+        } else {
+            // Failing that, attempt to just get an unused index.
+            // This will cause problems if installing multiple extensions at once
+            // that listen to the same hook(s), but this will self-resolve or can
+            // be manually resolved by running the command to update the tracker.
+            $priority = DB::table('site_extensions')->get()->count() + 1;
+        }
+
         Hook::listen('template.home_activity_sidebar', function ($callback, $output, $data) {
             return $output."\n".view('wishlists::home._sidebar_row');
-        });
+        }, $priority);
 
         Hook::listen('template.home_inventory_stack_name', function ($callback, $output, $data) {
             return $output.view('wishlists::_wishlist_add', [
                 'small' => true,
                 'item'  => $data['item'],
             ]);
-        });
+        }, $priority);
 
         Hook::listen('template.user_user_sidebar', function ($callback, $output, $data) {
             return $output."\n".view('wishlists::user._sidebar_row', [
                 'user' => $data['user'],
             ]);
-        });
+        }, $priority);
 
         Hook::listen('template.world_item_entry_title', function ($callback, $output, $data) {
             return $output.view('wishlists::_wishlist_add', [
                 'class' => 'float-right mx-2',
                 'item'  => $data['item'],
             ]);
-        });
+        }, $priority);
 
         Hook::listen('template.world_item_page_name', function ($callback, $output, $data) {
             return $output.view('wishlists::_wishlist_add', [
                 'class' => 'float-right',
                 'item'  => $data['item'],
             ]);
-        });
+        }, $priority);
 
         Hook::listen('template.shops_shop_item_name', function ($callback, $output, $data) {
             return $output.view('wishlists::_wishlist_check', [
                 'item' => $data['item'],
             ]);
-        });
+        }, $priority);
 
         Hook::listen('template.shops_stock_item_name', function ($callback, $output, $data) {
             return $output.view('wishlists::_wishlist_add', [
                 'small' => true,
                 'item'  => $data['stock']->item,
             ]);
-        });
+        }, $priority);
 
         Hook::listen('template.character_inventory_stack_name', function ($callback, $output, $data) {
             return $output.view('wishlists::_wishlist_add', [
                 'small' => true,
                 'item'  => $data['item'],
             ]);
-        });
+        }, $priority);
     }
 
     /**
