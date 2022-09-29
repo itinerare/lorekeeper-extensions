@@ -1,5 +1,5 @@
-@if($wishlist)
-    {!! Form::open(['url' => $wishlist->id ? 'wishlists/edit/'.$wishlist->id : 'wishlists/create']) !!}
+@if ($wishlist)
+    {!! Form::open(['url' => $wishlist->id ? 'wishlists/edit/' . $wishlist->id : 'wishlists/create']) !!}
 
     <div class="form-group">
         {!! Form::label('name', 'Name') !!}

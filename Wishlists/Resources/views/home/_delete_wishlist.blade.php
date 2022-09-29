@@ -1,5 +1,5 @@
-@if($wishlist)
-    {!! Form::open(['url' => 'wishlists/delete/'.$wishlist->id]) !!}
+@if ($wishlist)
+    {!! Form::open(['url' => 'wishlists/delete/' . $wishlist->id]) !!}
 
     <p>This will delete the wishlist <strong>{{ $wishlist->name }}</strong> as well as any items in it. This is not reversible. Are you sure you want to delete this wishlist?</p>
 
