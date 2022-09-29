@@ -1,0 +1,22 @@
+{
+    "name": "itinerare/lorekeeper-extensions",
+    "type": "project",
+    "require-dev": {
+        "laravel/pint": "^1.2"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "itinerare",
+            "email": "ad@itinerare.net"
+        }
+    ],
+    "scripts": {
+        "sniff": [
+            "./vendor/bin/pint --test"
+        ],
+        "lint": [
+            "./vendor/bin/pint"
+        ]
+    }
+}
