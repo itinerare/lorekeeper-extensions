@@ -4,10 +4,10 @@ namespace Extensions\Wishlists\Http\Controllers;
 
 use App\Http\Controllers\Admin\HomeController;
 use App\Models\Item\Item;
-use Extensions\Wishlists\Services\WishlistManager;
 use Extensions\Wishlists\Models\Wishlist;
 use Extensions\Wishlists\Models\WishlistItem;
 use Extensions\Wishlists\Models\WishlistUser;
+use Extensions\Wishlists\Services\WishlistManager;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
