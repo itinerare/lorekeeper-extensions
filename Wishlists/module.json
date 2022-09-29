@@ -1,0 +1,16 @@
+{
+    "name": "Wishlists",
+    "alias": "wishlists",
+    "description": "Allows users to create wishlists and add on-site items to them.",
+    "keywords": ["items"],
+    "priority": 0,
+    "providers": [
+        "Extensions\\Wishlists\\Providers\\WishlistsServiceProvider"
+    ],
+    "files": [],
+    "wiki_key": "Wishlists",
+    "creators": {
+        "itinerare": "https://github.com/itinerare/"
+    },
+    "version": "1.4.0"
+}
