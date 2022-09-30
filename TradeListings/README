@@ -1,0 +1,5 @@
+Adds a trade listing system. Users can enter in comments, preferred method(s) of contact (required), and attach both requested items/currencies/other (not handled by Lorekeeper) goods/services and offered items/characters/currencies/other goods/services. Listings are then displayed for a set duration or until manually marked expired by a user or admin. Listings, both past and present, may be linked and viewed via their id. Expired listings are displayed for the user that created them in a page for reference, but otherwise hidden.
+
+Note that this system only displays the information entered and does not directly interface with the trade system; it is only a means for users to communicate, more or less.
+
+This also adds a field for an optional-but-recommended proof-of-terms link to trades themselves, but does not make any other changes to the trade system.
