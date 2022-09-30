@@ -3,7 +3,6 @@
 namespace Extensions\Wishlists\Providers;
 
 use Esemve\Hook\Facades\Hook;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 
 class WishlistsServiceProvider extends ServiceProvider {
@@ -82,7 +81,7 @@ class WishlistsServiceProvider extends ServiceProvider {
         // they have different priorities set. Since broadly extensions should
         // strive to be mutually compatible where feasible regardless, the name
         // as converted to an integer is used here so as to provide a unique number.
-        $priority = substr(base_convert(md5($this->moduleNameLower), 16, 10) , -5);
+        $priority = substr(base_convert(md5($this->moduleNameLower), 16, 10), -5);
 
         Hook::listen('template.home_activity_sidebar', function ($callback, $output, $data) {
             return $output."\n".view('wishlists::home._sidebar_row');
