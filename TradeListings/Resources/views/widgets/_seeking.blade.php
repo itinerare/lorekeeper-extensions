@@ -1,7 +1,7 @@
 <h3>Seeking:</h3>
 
 <div class="card mb-3 trade-offer">
-    @if(isset($data) && $data['items'])
+    @if (isset($data) && $data['items'])
         <div class="card-header">
             Items
         </div>
@@ -14,10 +14,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($data['items'] as $itemRow)
+                    @foreach ($data['items'] as $itemRow)
                         <tr class="d-flex">
-                            <td class="col-6">@if(isset($itemRow['asset']->image_url)) <img class="small-icon" src="{{$itemRow['asset']->image_url }}"> @endif
-                            <a href="/world/items?name={{ $itemRow['asset']->name }}">{!! $itemRow['asset']->name !!}</a></td>
+                            <td class="col-6">
+                                @if (isset($itemRow['asset']->image_url))
+                                    <img class="small-icon" src="{{ $itemRow['asset']->image_url }}">
+                                @endif
+                                <a href="/world/items?name={{ $itemRow['asset']->name }}">{!! $itemRow['asset']->name !!}</a>
+                            </td>
                             <td class="col-6">{!! $itemRow['quantity'] !!}</td>
                         </tr>
                     @endforeach
@@ -25,41 +29,41 @@
             </table>
         </div>
     @endif
-    @if(isset($data) && $data['currencies'])
+    @if (isset($data) && $data['currencies'])
         <div class="card-header border-top border-bottom-0">
             Currencies
         </div>
         <ul class="list-group list-group-flush">
-            @foreach($data['currencies'] as $currency)
+            @foreach ($data['currencies'] as $currency)
                 <li class="list-group-item border-bottom-0 border-top currency-item">
                     {!! $currency['asset']->display('') !!}
                 </li>
             @endforeach
         </ul>
     @endif
-    @if(isset($listing->data['seeking_etc']) && $listing->data['seeking_etc'])
+    @if (isset($listing->data['seeking_etc']) && $listing->data['seeking_etc'])
         <div class="card-header border-top border-bottom-0">
             Other Goods & Services
         </div>
         <ul class="list-group list-group-flush">
             <div class="card-body">
-            {!! nl2br(htmlentities($listing->data['seeking_etc'])) !!}
+                {!! nl2br(htmlentities($listing->data['seeking_etc'])) !!}
             </div>
         </ul>
     @endif
-    @if(isset($wishlists) && isset($listing->data['seeking_wishlists']) && $listing->data['seeking_wishlists'])
+    @if (isset($wishlists) && isset($listing->data['seeking_wishlists']) && $listing->data['seeking_wishlists'])
         <div class="card-header border-top border-bottom-0">
             Items from Wishlists
         </div>
         <ul class="list-group list-group-flush">
             <div class="card-body">
-                @foreach($listing->data['seeking_wishlists'] as $wishlist)
-                    <a href="{{ url('user/'.$user->name.'/wishlists/'.$wishlist) }}">{{ $wishlists[$wishlist] }}</a>{{ !$loop->last ? ', ' : '' }}
+                @foreach ($listing->data['seeking_wishlists'] as $wishlist)
+                    <a href="{{ url('user/' . $user->name . '/wishlists/' . $wishlist) }}">{{ $wishlists[$wishlist] }}</a>{{ !$loop->last ? ', ' : '' }}
                 @endforeach
             </div>
         </ul>
     @endif
-    @if(!isset($listing->data['seeking']) && !isset($listing->data['seeking_etc']))
+    @if (!isset($listing->data['seeking']) && !isset($listing->data['seeking_etc']))
         <div class="card-body">{!! $listing->user->displayName !!} is not seeking anything.</div>
     @endif
 </div>

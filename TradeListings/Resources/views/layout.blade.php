@@ -2,11 +2,11 @@
 
 @section('title')
     Trade Listings ::
-        @yield('trade-title')
+    @yield('trade-title')
 @endsection
 
 @section('sidebar')
-    @if(View::exists('trade_listings::_sidebar'))
+    @if (View::exists('trade_listings::_sidebar'))
         @include('trade_listings::_sidebar')
     @endif
 @endsection

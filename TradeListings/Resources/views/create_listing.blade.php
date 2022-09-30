@@ -1,28 +1,33 @@
 @extends('trade_listings::layout')
 
-@section('trade-title') Create New @endsection
+@section('trade-title')
+    Create New
+@endsection
 
 @section('trade-content')
-{!! breadcrumbs(['Trades' => 'trades/open', 'Listings' => 'trades/listings', 'New Listing' => 'trades/listings/create']) !!}
+    {!! breadcrumbs(['Trades' => 'trades/open', 'Listings' => 'trades/listings', 'New Listing' => 'trades/listings/create']) !!}
 
-<h1>
-    New Trade Listing
-</h1>
+    <h1>
+        New Trade Listing
+    </h1>
 
-<p>
-    Create a new trade listing.
-    <strong>Some notes:</strong>
+    <p>
+        Create a new trade listing.
+        <strong>Some notes:</strong>
     <ul>
         <li>The title should be informative and not include anything that breaks this site's rules.</li>
         <li>You can't modify the listing after its creation, so make sure everything is in order!</li>
         <li>Note that you may only add up to <strong>{{ Config::get('lorekeeper.settings.trade_asset_limit') }}</strong> things to each side (seeking/offering) of a listing-- if necessary, please create a new listing to add more.</li>
-        <li><strong>Note that this does not interact automatically with the trade system;</strong> while trade listings should <strong>not</strong> be tentative, including an item or character you own within a listing will not inherently do anything with the item/character(s), and you will need to add them to trade(s) on your own.</li>
-        <ul><li>Traded items/characters are not automatically removed from a listing.</li></ul>
+        <li><strong>Note that this does not interact automatically with the trade system;</strong> while trade listings should <strong>not</strong> be tentative, including an item or character you own within a listing will not inherently do anything with
+            the item/character(s), and you will need to add them to trade(s) on your own.</li>
+        <ul>
+            <li>Traded items/characters are not automatically removed from a listing.</li>
+        </ul>
         <li>Listings expire after {{ $listingDuration }} days. You will also be able to manually mark a listing as expired before that point.</li>
     </ul>
-</p>
+    </p>
 
-{!! Form::open(['url' => 'trades/listings/create']) !!}
+    {!! Form::open(['url' => 'trades/listings/create']) !!}
 
     <div class="form-group">
         {!! Form::label('title', 'Listing Title') !!}
@@ -63,9 +68,9 @@
                 <a href="#" class="remove-item btn btn-danger mb-2">×</a>
             </div>
         </div>
-        @if(isset($currencies) && $currencies)
-        <h3>Currencies</h3>
-            @foreach($currencies as $currency)
+        @if (isset($currencies) && $currencies)
+            <h3>Currencies</h3>
+            @foreach ($currencies as $currency)
                 <div class="form-group">
                     {!! Form::checkbox('seeking_currency_ids[]', $currency->id, 0, ['class' => 'form-check-input', 'data-toggle' => 'toggle']) !!}
                     {!! Form::label('seeking_currency_ids[]', $currency->name, ['class' => 'form-check-label ml-3']) !!} {!! add_help('Toggle this on to mark this currency as being sought.') !!}
@@ -88,12 +93,12 @@
     </div>
     <h2>Offering <a class="small inventory-collapse-toggle collapse-toggle" href="#userOffering" data-toggle="collapse">Show</a></h2>
     <div class="mb-3 collapse" id="userOffering">
-    <p>Select the items, characters, currencies, and/or other goods or services you're offering.</p>
+        <p>Select the items, characters, currencies, and/or other goods or services you're offering.</p>
         @include('widgets._inventory_select', ['user' => Auth::user(), 'inventory' => $inventory, 'categories' => $categories, 'selected' => [], 'page' => $page])
         @include('widgets._my_character_select', ['readOnly' => true, 'categories' => $characterCategories])
-        @if(isset($currencies) && $currencies)
-        <h3>Currencies</h3>
-            @foreach($currencies as $currency)
+        @if (isset($currencies) && $currencies)
+            <h3>Currencies</h3>
+            @foreach ($currencies as $currency)
                 <div class="form-group">
                     {!! Form::checkbox('offer_currency_ids[]', $currency->id, 0, ['class' => 'form-check-input', 'data-toggle' => 'toggle']) !!}
                     {!! Form::label('offer_currency_ids[]', $currency->name, ['class' => 'form-check-label ml-3']) !!} {!! add_help('Toggle this on to mark this currency as offered.') !!}
@@ -108,7 +113,7 @@
         </div>
     </div>
     <div class="text-right">{!! Form::submit('Create Listing', ['class' => 'btn btn-primary']) !!}</div>
-{!! Form::close() !!}
+    {!! Form::close() !!}
 
 @endsection
 @section('scripts')
@@ -136,7 +141,7 @@
 
             function addItemRow() {
                 var $rows = $("#itemList > div")
-                if($rows.length === 1) {
+                if ($rows.length === 1) {
                     $rows.find('.remove-item').removeClass('disabled')
                 }
                 var $clone = $('.item-row').clone();
@@ -149,10 +154,11 @@
                 })
                 $clone.find('.item-select-row').selectize();
             }
+
             function removeItemRow($trigger) {
                 $trigger.parent().remove();
                 var $rows = $("#itemList > div")
-                if($rows.length === 1) {
+                if ($rows.length === 1) {
                     $rows.find('.remove-item').addClass('disabled')
                 }
             }
