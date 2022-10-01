@@ -3,6 +3,7 @@
 namespace Extensions\TradeListings\Providers;
 
 use Esemve\Hook\Facades\Hook;
+use Extensions\TradeListings\Console\MigrateTradeListingComments;
 use Extensions\TradeListings\Models\TradeListing;
 use Illuminate\Support\ServiceProvider;
 
@@ -168,6 +169,7 @@ class TradeListingsServiceProvider extends ServiceProvider {
     private function registerCommands() {
         $this->commands([
             //
+            MigrateTradeListingComments::class,
         ]);
     }
 
