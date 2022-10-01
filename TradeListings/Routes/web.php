@@ -17,10 +17,6 @@ use Illuminate\Support\Facades\Route;
     Routes accessible to anyone
 **********************************************************************************************/
 
-Route::prefix('tradelistings')->group(function () {
-    Route::get('/', 'TradeListingsController@index');
-});
-
 /**********************************************************************************************
     Routes that require login
 **********************************************************************************************/
