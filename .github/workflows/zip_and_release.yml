@@ -8,16 +8,18 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
     - uses: actions/checkout@master
-    - name: Archive Release
+    - name: Archive Wishlists
       uses: thedoctor0/zip-release@main
       with:
         type: 'zip'
         path: 'Wishlists'
         filename: 'Wishlists.zip'
         exclusions: '*.git* /node_modules/* .editorconfig /vendor/*'
-    - name: Archive Release
+    - name: Archive Trade Listings
       uses: thedoctor0/zip-release@main
       with:
         type: 'zip'
@@ -27,8 +29,6 @@ jobs:
     - name: Upload Release
       uses: ncipollo/release-action@v1
       with:
-        commit: main
-        generateReleaseNotes: true
         artifacts: "Wishlists.zip,TradeListings.zip"
         replacesArtifacts: true
         allowUpdates: true
