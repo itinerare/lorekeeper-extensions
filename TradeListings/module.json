@@ -12,5 +12,6 @@
     "creators": {
         "itinerare": "https://github.com/itinerare/"
     },
-    "version": "1.1.0"
+    "version": "1.1.0",
+    "requires": "3.0.0"
 }
