@@ -2,11 +2,10 @@
 
 namespace Extensions\SelectedCharacter\Providers;
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Route;
 
-class RouteServiceProvider extends ServiceProvider
-{
+class RouteServiceProvider extends ServiceProvider {
     /**
      * The module namespace to assume when generating URLs to actions.
      *
@@ -18,21 +17,15 @@ class RouteServiceProvider extends ServiceProvider
      * Called before routes are registered.
      *
      * Register any model bindings or pattern based filters.
-     *
-     * @return void
      */
-    public function boot()
-    {
+    public function boot() {
         parent::boot();
     }
 
     /**
      * Define the routes for the application.
-     *
-     * @return void
      */
-    public function map()
-    {
+    public function map() {
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();
@@ -42,11 +35,8 @@ class RouteServiceProvider extends ServiceProvider
      * Define the "web" routes for the application.
      *
      * These routes all receive session state, CSRF protection, etc.
-     *
-     * @return void
      */
-    protected function mapWebRoutes()
-    {
+    protected function mapWebRoutes() {
         Route::middleware('web')
             ->namespace($this->moduleNamespace)
             ->group(module_path('SelectedCharacter', '/Routes/web.php'));
@@ -56,11 +46,8 @@ class RouteServiceProvider extends ServiceProvider
      * Define the "api" routes for the application.
      *
      * These routes are typically stateless.
-     *
-     * @return void
      */
-    protected function mapApiRoutes()
-    {
+    protected function mapApiRoutes() {
         Route::prefix('api')
             ->middleware('api')
             ->namespace($this->moduleNamespace)

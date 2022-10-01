@@ -23,8 +23,7 @@ class SelectedCharacterUserSettings extends UserSettings {
     /**
      * Get the character the user has selected if appropriate.
      */
-    public function selectedCharacter()
-    {
+    public function selectedCharacter() {
         return $this->belongsTo(Character::class, 'selected_character_id')->visible();
     }
 }

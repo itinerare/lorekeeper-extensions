@@ -28,7 +28,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     **********************************************************************************************/
     Route::group(['middleware' => ['alias']], function () {
         //
-        Route::group(['prefix' => 'characters'], function() {
+        Route::group(['prefix' => 'characters'], function () {
             Route::post('select-character', 'SelectedCharacterController@postSelectCharacter');
         });
 
@@ -37,7 +37,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         **********************************************************************************************/
         Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['staff']], function () {
             //
-
         });
     });
 });
