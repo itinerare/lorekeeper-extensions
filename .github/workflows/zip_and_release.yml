@@ -12,6 +12,7 @@ jobs:
       contents: write
     steps:
     - uses: actions/checkout@master
+
     - name: Archive Wishlists
       uses: thedoctor0/zip-release@main
       with:
@@ -19,6 +20,7 @@ jobs:
         path: 'Wishlists'
         filename: 'Wishlists.zip'
         exclusions: '*.git* /node_modules/* .editorconfig /vendor/*'
+        
     - name: Archive Trade Listings
       uses: thedoctor0/zip-release@main
       with:
@@ -26,6 +28,7 @@ jobs:
         path: 'TradeListings'
         filename: 'TradeListings.zip'
         exclusions: '*.git* /node_modules/* .editorconfig /vendor/*'
+
     - name: Upload Release
       uses: ncipollo/release-action@v1
       with:
