@@ -1,0 +1,35 @@
+name: Zip and Release Extensions
+
+on: 
+  push:
+    tags:
+    - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Archive Release
+      uses: thedoctor0/zip-release@main
+      with:
+        type: 'zip'
+        path: 'Wishlists'
+        filename: 'Wishlists.zip'
+        exclusions: '*.git* /node_modules/* .editorconfig /vendor/*'
+    - name: Archive Release
+      uses: thedoctor0/zip-release@main
+      with:
+        type: 'zip'
+        path: 'TradeListings'
+        filename: 'TradeListings.zip'
+        exclusions: '*.git* /node_modules/* .editorconfig /vendor/*'
+    - name: Upload Release
+      uses: ncipollo/release-action@v1
+      with:
+        commit: main
+        generateReleaseNotes: true
+        artifacts: "Wishlists.zip,TradeListings.zip"
+        replacesArtifacts: true
+        allowUpdates: true
+        token: ${{ secrets.GITHUB_TOKEN }}
