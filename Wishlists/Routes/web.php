@@ -30,29 +30,28 @@ Route::group(['prefix' => 'user'], function () {
 Route::group(['middleware' => ['auth', 'verified']], function () {
     //
 
-    Route::group(['prefix' => 'wishlists'], function () {
-        Route::get('/', 'WishlistController@getWishlists');
-        Route::get('create', 'WishlistController@getCreateWishlist');
-        Route::get('{id}', 'WishlistController@getWishlist')->where('id', '[0-9]+');
-        Route::get('default', 'WishlistController@getWishlist');
-        Route::get('edit/{id}', 'WishlistController@getEditWishlist');
-        Route::get('delete/{id}', 'WishlistController@getDeleteWishlist');
-        Route::post('create', 'WishlistController@postCreateEditWishlist');
-        Route::post('edit/{id}', 'WishlistController@postCreateEditWishlist');
-        Route::post('delete/{id}', 'WishlistController@postDeleteWishlist');
-        Route::post('add/{item_id}', 'WishlistController@postCreateEditWishlistItem')->where('item_id', '[0-9]+');
-        Route::post('{id}/add/{item_id}', 'WishlistController@postCreateEditWishlistItem')->where('id', '[0-9]+')->where('item_id', '[0-9]+');
-        Route::post('default/update/{item_id}', 'WishlistController@postCreateEditWishlistItem')->where('item_id', '[0-9]+');
-        Route::post('{id}/update/{item_id}', 'WishlistController@postCreateEditWishlistItem')->where('id', '[0-9]+')->where('item_id', '[0-9]+');
-        Route::post('move/{item_id}', 'WishlistController@postMoveWishlistItem')->where('item_id', '[0-9]+');
-        Route::post('{id}/move/{item_id}', 'WishlistController@postMoveWishlistItem')->where('id', '[0-9]+')->where('item_id', '[0-9]+');
-    });
-
     /**********************************************************************************************
         Routes that require having a linked account (also includes blocked routes when banned)
     **********************************************************************************************/
     Route::group(['middleware' => ['alias']], function () {
         //
+        Route::group(['prefix' => 'wishlists'], function () {
+            Route::get('/', 'WishlistController@getWishlists');
+            Route::get('create', 'WishlistController@getCreateWishlist');
+            Route::get('{id}', 'WishlistController@getWishlist')->where('id', '[0-9]+');
+            Route::get('default', 'WishlistController@getWishlist');
+            Route::get('edit/{id}', 'WishlistController@getEditWishlist');
+            Route::get('delete/{id}', 'WishlistController@getDeleteWishlist');
+            Route::post('create', 'WishlistController@postCreateEditWishlist');
+            Route::post('edit/{id}', 'WishlistController@postCreateEditWishlist');
+            Route::post('delete/{id}', 'WishlistController@postDeleteWishlist');
+            Route::post('add/{item_id}', 'WishlistController@postCreateEditWishlistItem')->where('item_id', '[0-9]+');
+            Route::post('{id}/add/{item_id}', 'WishlistController@postCreateEditWishlistItem')->where('id', '[0-9]+')->where('item_id', '[0-9]+');
+            Route::post('default/update/{item_id}', 'WishlistController@postCreateEditWishlistItem')->where('item_id', '[0-9]+');
+            Route::post('{id}/update/{item_id}', 'WishlistController@postCreateEditWishlistItem')->where('id', '[0-9]+')->where('item_id', '[0-9]+');
+            Route::post('move/{item_id}', 'WishlistController@postMoveWishlistItem')->where('item_id', '[0-9]+');
+            Route::post('{id}/move/{item_id}', 'WishlistController@postMoveWishlistItem')->where('id', '[0-9]+')->where('item_id', '[0-9]+');
+        });
 
         /**********************************************************************************************
             Admin panel routes
