@@ -1,0 +1,16 @@
+{
+    "name": "SelectedCharacter",
+    "alias": "selectedcharacter",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Extensions\\SelectedCharacter\\Providers\\SelectedCharacterServiceProvider"
+    ],
+    "files": [],
+    "wiki_key": "Selected_Character",
+    "creators": {
+        "itinerare": "https://github.com/itinerare/"
+    },
+    "version": "1.1.0"
+}

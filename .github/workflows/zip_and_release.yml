@@ -28,11 +28,19 @@ jobs:
         path: 'TradeListings'
         filename: 'TradeListings.zip'
         exclusions: '*.git* /node_modules/* .editorconfig /vendor/*'
+    
+    - name: Archive Selected Character
+      uses: thedoctor0/zip-release@main
+      with:
+        type: 'zip'
+        path: 'SelectedCharacter'
+        filename: 'SelectedCharacter.zip'
+        exclusions: '*.git* /node_modules/* .editorconfig /vendor/*'
 
     - name: Upload Release
       uses: ncipollo/release-action@v1
       with:
-        artifacts: "Wishlists.zip,TradeListings.zip"
+        artifacts: "Wishlists.zip,TradeListings.zip,SelectedCharacter.zip"
         replacesArtifacts: true
         allowUpdates: true
         token: ${{ secrets.GITHUB_TOKEN }}
